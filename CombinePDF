@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jan  7 14:32:19 2021
+
+combine PDF
+
+pip install PyPDF2
+
+@author: WNX1SGH
+"""
+
+#tgt_folder = r'C:\Users\wnx1sgh\Documents\SAP'
+
+import os
+from PyPDF2 import PdfFileMerger
+
+target_path = r'C:\Users\wnx1sgh\Documents\SAP'
+pdf_lst = [f for f in os.listdir(target_path) if f.endswith('.pdf')]
+pdf_lst = [os.path.join(target_path, filename) for filename in pdf_lst]
+
+file_merger = PdfFileMerger()
+for pdf in pdf_lst:
+    file_merger.append(pdf)     # 合并pdf文件
+
+file_merger.write(r"C:\Users\wnx1sgh\Documents\SAP\merge.pdf")
